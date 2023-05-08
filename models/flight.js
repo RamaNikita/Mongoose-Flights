@@ -1,4 +1,9 @@
 const { Schema, model } = require("mongoose");
+
+const setDate = () => {
+  let date = new Date();
+  return date.setFullYear(date.getFullYear() + 1);
+};
 const flightSchema = new Schema({
   airline: {
     type: String,
@@ -12,7 +17,7 @@ const flightSchema = new Schema({
   },
   departs: {
     type: Date,
-    default: n / a,
+    default: setDate(),
     required: true,
   },
 });
