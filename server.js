@@ -41,7 +41,16 @@ app.get("/new", (req, res) => {
 //Update
 
 //Create
-
+app.post("/", async (req, res) => {
+  try {
+    const newFlight = await Flight.create(req.body);
+    console.log(newFlight);
+    // redirect is making a GET request to whatever path you specify
+    res.redirect("/");
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 //Show
 app.get("/:id", (req, res) => {
   res.render("Show");
