@@ -6,18 +6,21 @@ class Index extends React.Component {
     return (
       <div>
         <h1>Flights:</h1>
+        <a href="/new" style={{ textDecoration: "none" }}>
+          Add Flight
+        </a>
         <ul>
-          {flights &&
-            flights.map((flight, i) => {
-              console.log(flight);
-              return (
-                <li>
-                  {flight.airline}
-                  {flight.flightNo}
-                  {flight.airport}
-                </li>
-              );
-            })}
+          {flights?.map((flight, i) => {
+            console.log(flight);
+            return (
+              <li key={i}>
+                <a href={`{flight.airline}`}>{flight.airline}</a>
+                {flight.flightNo}
+                {flight.airport}
+                {/* <a href={`${flight.id}`}>{flight.airline}</a> */}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

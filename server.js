@@ -29,8 +29,13 @@ app.use((req, res, next) => {
 //Routes
 
 //Index
-app.get("/", (req, res) => {
-  res.render("Index");
+app.get("/", async (req, res) => {
+  try {
+    const foundFlight = await Flight.find({});
+    res.status(200).render("Index", { flights: foundFlight });
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 //New
 app.get("/new", (req, res) => {
@@ -52,8 +57,17 @@ app.post("/", async (req, res) => {
   }
 });
 //Show
-app.get("/:id", (req, res) => {
-  res.render("Show");
+app.get("/:id", async (req, res) => {
+  try {
+    const foundFlight = await Flight.findById(req.params.id).populate(
+      "destinations"
+    );
+    res.render("Show", {
+      flight: foundFlight,
+    });
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 app.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);

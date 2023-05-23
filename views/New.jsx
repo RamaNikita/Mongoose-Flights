@@ -43,7 +43,7 @@ class New extends React.Component {
           <input type="submit" value="Book Flight" link="/index" />
         </form>
 
-        <a href="/flights">Back to Home Page</a>
+        <a href="/">Back to Home Page</a>
       </div>
     );
   }
